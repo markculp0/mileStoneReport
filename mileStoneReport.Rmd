@@ -1,0 +1,35 @@
+---
+title: "Swiftkey Milestone Report"
+author: "Mark Culp"
+date: "July 24, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+### Load SwiftKey Project Data
+
+
+```{r, warning=FALSE}
+library(tm)
+
+# Set data directory
+cname <- file.path("C:/Users/Mark/Documents/code/r/coursera",
+    "20170724_capstone/swiftkeyProject/final", "en_US")
+
+# List files in data directory
+dir(cname)
+
+# Read in corpus of text documents
+docs <- VCorpus(DirSource(cname))   
+
+# Summarize corpus of text documents
+summary(docs) 
+
+```
+
+### Show Plots
+
+
