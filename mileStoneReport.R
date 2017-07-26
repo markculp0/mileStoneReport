@@ -17,4 +17,33 @@ docs <- VCorpus(DirSource(cname))
 # Summarize corpus of text documents
 summary(docs) 
 
+# List # of characters per document
+inspect(docs[1:3])
+
+# ====================
+# Preprocess documents
+# ====================
+
+# Remove punctuation
+docs <- tm_map(docs,removePunctuation)
+
+# Remove numbers
+docs <- tm_map(docs, removeNumbers)  
+
+# Convert characters to lower case
+docs <- tm_map(docs, removeNumbers)  
+
+# Remove stop words
+docs <- tm_map(docs, removeWords, stopwords("english"))
+
+# Stem the document
+docs <- tm_map(docs, stemDocument)
+
+# Strip white space 
+docs <- tm_map(docs, stripWhitespace)
+
+# Treat as plain text document
+docs <- tm_map(docs, PlainTextDocument)
+
+
 

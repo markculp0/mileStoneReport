@@ -126,9 +126,9 @@ $(document).ready(function () {
 
 <div id="load-swiftkey-project-data" class="section level3">
 <h3>Load SwiftKey Project Data</h3>
-<pre class="r"><code>library(tm)</code></pre>
-<pre><code>## Loading required package: NLP</code></pre>
-<pre class="r"><code># Set data directory
+<pre class="r"><code>library(tm)
+
+# Set data directory
 cname &lt;- file.path(&quot;C:/Users/Mark/Documents/code/r/coursera&quot;,
     &quot;20170724_capstone/swiftkeyProject/final&quot;, &quot;en_US&quot;)
 
@@ -144,9 +144,51 @@ summary(docs) </code></pre>
 ## en_US.blogs.txt   2      PlainTextDocument list
 ## en_US.news.txt    2      PlainTextDocument list
 ## en_US.twitter.txt 2      PlainTextDocument list</code></pre>
+<pre class="r"><code># List # of characters per document
+inspect(docs[1:3])</code></pre>
+<pre><code>## &lt;&lt;VCorpus&gt;&gt;
+## Metadata:  corpus specific: 0, document level (indexed): 0
+## Content:  documents: 3
+## 
+## [[1]]
+## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 208361438
+## 
+## [[2]]
+## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 15683765
+## 
+## [[3]]
+## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 162384825</code></pre>
 </div>
-<div id="show-plots" class="section level3">
-<h3>Show Plots</h3>
+<div id="preprocess-documents" class="section level3">
+<h3>Preprocess documents</h3>
+<pre class="r"><code>library(tm)
+
+# Remove punctuation
+docs &lt;- tm_map(docs,removePunctuation)
+
+# Remove numbers
+docs &lt;- tm_map(docs, removeNumbers)  
+
+# Convert characters to lower case
+docs &lt;- tm_map(docs, removeNumbers)  
+
+# Remove stop words
+docs &lt;- tm_map(docs, removeWords, stopwords(&quot;english&quot;))
+
+# Stem the document
+docs &lt;- tm_map(docs, stemDocument)
+
+# Strip white space 
+docs &lt;- tm_map(docs, stripWhitespace)
+
+# Treat as plain text document
+docs &lt;- tm_map(docs, PlainTextDocument)</code></pre>
 </div>
 
 
