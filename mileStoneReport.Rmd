@@ -46,7 +46,7 @@ docs <- tm_map(docs,removePunctuation)
 docs <- tm_map(docs, removeNumbers)  
 
 # Convert characters to lower case
-docs <- tm_map(docs, removeNumbers)  
+docs <- tm_map(docs, tolower())  
 
 # Remove stop words
 docs <- tm_map(docs, removeWords, stopwords("english"))
